@@ -6,8 +6,7 @@ interface to generate the HTML and javascript to render all the
 data you'd like on top of Google Maps. Several plotting methods
 make creating exploratory map views effortless. Here's a crash course:
 
-::
-
+.. code-block:: python
     from gmplot import gmplot
 
     # Place map
@@ -48,6 +47,28 @@ make creating exploratory map views effortless. Here's a crash course:
     gmap.draw("my_map.html")
 
 .. image:: https://imgur.com/C6dnec8.png
+
+About this fork
+---------------
+
+This fork of ``gmplot`` contains several changes implemented specifically for the
+use case I was working on my current project.
+
+.. code-block:: python
+    # Added three new optional arguments for draw:
+    # image path: the path of an image to show before the map
+    # header and footer: html strings to draw before and after the map
+    gmap.draw(os.path.join(directory, html_file),
+              img_path=os.path.join("images", os.path.basename(filename)),
+              header="This is the header",
+              footer="<PRE>And the footer</pre>")
+
+    # Call to fit_bounds
+    # https://developers.google.com/maps/documentation/javascript/reference/map#Map.fitBounds
+    gmap.fit_bounds(north, east, south, west)
+
+    # also, by default if a marker has title it is shown as a google.maps.InfoWindow()
+    # https://developers.google.com/maps/documentation/javascript/infowindows
 
 Geocoding
 ---------
